@@ -1,7 +1,6 @@
-from CellWorld import CellWorld
-
+#from CellWorld import CellWorld
 class Cell:
-    def __init__(self, position: (int, int), is_dead: bool, world: CellWorld):
+    def __init__(self, position: (int, int), is_dead: bool, world):
         self.position = position
         self.is_dead = is_dead
         self.world = world
@@ -9,7 +8,6 @@ class Cell:
     def check_if_will_change_state(self) -> bool:
         neighbours = self.get_neighbours()
         alive_neighbours = [x for x in neighbours if not x.is_dead]
-
 
         if not self.is_dead: # if is alive
             # any cell with fewer than 2 neighbours dies
@@ -28,23 +26,28 @@ class Cell:
 
     # Get all neighbours of cell
     def get_neighbours(self) -> list:
-        neighbours = list[Cell]
+        neighbours = list()
         # all neighbours
         neighbours_positions = [(self.position[0] - 1, self.position[1] - 1),
-                                    (self.position[0], self.position[1] - 1)
-                                    (self.position[0] + 1, self.position[1] - 1)
-                                    (self.position[0] - 1, self.position[1])
-                                    (self.position[0] + 1, self.position[1])
-                                    (self.position[0] - 1, self.position[1] + 1)
-                                    (self.position[0], self.position[1] + 1)
+                                    (self.position[0], self.position[1] - 1),
+                                    (self.position[0] + 1, self.position[1] - 1),
+                                    (self.position[0] - 1, self.position[1]),
+                                    (self.position[0] + 1, self.position[1]),
+                                    (self.position[0] - 1, self.position[1] + 1),
+                                    (self.position[0], self.position[1] + 1),
                                     (self.position[0] + 1, self.position[1] + 1)]
 
         #check for non-existing neighbours and delete them from neighbour list
+        neighbours_to_remove = []
         for position in neighbours_positions:
             if (position[0] < 0 or position[0] >= self.world.x_size or
                 position[1] < 0 or position[1] >= self.world.y_size):
-                neighbours_positions.remove(position)
+                neighbours_to_remove.append(position)
 
+        neighbours_positions = [x for x in neighbours_positions if x not in neighbours_to_remove]
+
+        for position in neighbours_positions:
+            neighbours.append(self.world.world[position[0]][position[1]])
 
         return neighbours
 
