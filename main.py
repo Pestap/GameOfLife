@@ -10,7 +10,9 @@ x_size = 120
 y_size = 60
 
 DISPLAY = pygame.display.set_mode((x_size*10,y_size*10))
-WORLD = CellWorld((x_size, y_size), 'glider')
+shift_x = 5
+shift_y = 5
+WORLD = CellWorld((x_size, y_size), 'pulsar', (shift_x, shift_y))
 
 FPS = pygame.time.Clock()
 FPS.tick(1)
@@ -30,9 +32,9 @@ while not quit:
     for row in WORLD.world:
         for cell in row:
             if not cell.is_dead:
-             pygame.draw.rect(DISPLAY, (255, 255, 255), pygame.Rect(10*cell.position[0], 10*cell.position[1], 10,10))
+                pygame.draw.rect(DISPLAY, (255, 255, 255), pygame.Rect(10*cell.position[0], 10*cell.position[1], 10,10))
 
     WORLD.advance()
-    time.sleep(1)
+    time.sleep(0.1)
     pygame.display.flip()
 
