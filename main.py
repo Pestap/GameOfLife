@@ -12,7 +12,7 @@ y_size = 60
 DISPLAY = pygame.display.set_mode((x_size*10,y_size*10))
 shift_x = 5
 shift_y = 5
-WORLD = CellWorld((x_size, y_size), 'pentadecathlon', (shift_x, shift_y))
+WORLD = CellWorld((x_size, y_size), 'glider', (shift_x, shift_y))
 
 FPS = pygame.time.Clock()
 FPS.tick(1)
