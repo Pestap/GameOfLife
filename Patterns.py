@@ -9,7 +9,8 @@ def get_pattern(name: str, shift: (int, int)) -> list[(int, int)]:
         return get_beacon_pattern(shift)
     elif name == 'pulsar':
         return get_pulsar_pattern(shift)
-
+    elif name == 'pentadecathlon':
+        return  get_decathlon_pattern(shift)
 
 def get_blinker_pattern(shift: (int, int)) -> list[(int, int)]:
     shift_x = shift[0]
@@ -101,3 +102,27 @@ def get_pulsar_pattern(shift: (int, int)) -> list[(int, int)]:
             (shift_x, shift_y + 10),
             (shift_x, shift_y + 9),
             (shift_x, shift_y + 8)]
+
+def get_decathlon_pattern(shift: (int, int)) -> list[(int, int)]:
+    shift_x = shift[0]
+    shift_y = shift[1]
+    # defined pulsar patter
+    # first upper left part clockwise
+    return [(shift_x + 1, shift_y + 2),
+            (shift_x + 2, shift_y + 1),
+            (shift_x + 3, shift_y),
+            (shift_x + 4, shift_y),
+            (shift_x + 5, shift_y),
+            (shift_x + 6, shift_y + 1),
+            (shift_x + 7, shift_y + 2),
+            (shift_x + 8, shift_y + 4),
+            (shift_x + 8, shift_y + 5),
+            (shift_x + 7, shift_y + 7),
+            (shift_x + 6, shift_y + 8),
+            (shift_x + 5, shift_y + 9),
+            (shift_x + 4, shift_y + 9),
+            (shift_x + 3, shift_y + 9),
+            (shift_x + 2, shift_y + 8),
+            (shift_x + 1, shift_y + 7),
+            (shift_x, shift_y + 5),
+            (shift_x, shift_y + 4)]
