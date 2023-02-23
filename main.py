@@ -27,6 +27,9 @@ while not quit:
             pygame.quit()
             sys.exit()
             quit = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                is_running = not is_running
 
     #draw game
     for row in WORLD.world:
